@@ -8,13 +8,8 @@ import {
   nextTick,
   onBeforeMount
 } from "vue";
-import {
-  useDark,
-  debounce,
-  useGlobal,
-  storageLocal,
-  storageSession
-} from "@pureadmin/utils";
+import { useDark, debounce, useGlobal, storageSession } from "@pureadmin/utils";
+import { storageLocal } from "@/lib/baseUtils";
 import { getConfig } from "@/config";
 import { useRouter } from "vue-router";
 import panel from "../panel/index.vue";

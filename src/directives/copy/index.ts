@@ -10,8 +10,9 @@ interface CopyEl extends HTMLElement {
 /** 文本复制指令（默认双击复制） */
 export const copy: Directive = {
   mounted(el: CopyEl, binding: DirectiveBinding) {
+    console.log(binding);
     const { value } = binding;
-    if (value) {
+    if (value !== undefined) {
       el.copyValue = value;
       const arg = binding.arg ?? "dblclick";
       // Register using addEventListener on mounted, and removeEventListener automatically on unmounted

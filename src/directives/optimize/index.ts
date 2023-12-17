@@ -4,7 +4,7 @@ import {
   isArray,
   debounce,
   throttle
-} from "@pureadmin/utils";
+} from "@/lib/baseUtils";
 import { useEventListener } from "@vueuse/core";
 import type { Directive, DirectiveBinding } from "vue";
 

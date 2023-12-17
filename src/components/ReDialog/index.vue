@@ -7,7 +7,7 @@ import {
   type DialogOptions
 } from "./index";
 import { ref, computed } from "vue";
-import { isFunction } from "@pureadmin/utils";
+import { isFunction } from "lodash-es";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
 import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 

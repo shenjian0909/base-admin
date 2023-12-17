@@ -26,6 +26,8 @@ menus:
   hshome: 首页
   hslogin: 登录
   hsicon: 图标
+  hsdemo: 示例
+  hsdialog: 弹窗
   hsabnormal: 异常页面
   hsfourZeroFour: "404"
   hsfourZeroOne: "403"

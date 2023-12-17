@@ -26,6 +26,8 @@ menus:
   hshome: Home
   hslogin: Login
   hsicon: Icon
+  hsdemo: Demo
+  hsdialog: Dialog
   hsabnormal: Abnormal Page
   hsfourZeroFour: "404"
   hsfourZeroOne: "403"

@@ -3,7 +3,7 @@ import { store } from "@/store";
 import { routerArrays } from "@/layout/types";
 import { multiType, positionType } from "./types";
 import { responsiveStorageNameSpace } from "@/config";
-import { isEqual, isBoolean, isUrl, storageLocal } from "@pureadmin/utils";
+import { isEqual, isBoolean, isUrl, storageLocal } from "@/lib/baseUtils";
 
 export const useMultiTagsStore = defineStore({
   id: "pure-multiTags",

@@ -21,14 +21,6 @@ export default {
         title: $t("menus.hshome"),
         showLink: VITE_HIDE_HOME === "true" ? false : true
       }
-    },
-    {
-      path: "/fonticon",
-      name: "fonticon",
-      component: () => import("@/views/fonticon/index.vue"),
-      meta: {
-        title: $t("menus.hsicon")
-      }
     }
   ]
 } as RouteConfigsTable;
