@@ -3,7 +3,7 @@ import { store } from "@/store";
 import { cacheType } from "./types";
 import { constantMenus } from "@/router";
 import { useMultiTagsStoreHook } from "./multiTags";
-import { debounce, getKeyList } from "@pureadmin/utils";
+import { debounce, getKeyList } from "@/lib/baseUtils";
 import { ascending, filterTree, filterNoPermissionTree } from "@/router/utils";
 
 export const usePermissionStore = defineStore({

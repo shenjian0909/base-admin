@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { getConfig } from "@/config";
 import { useLayout } from "./useLayout";
 import { themeColorsType } from "../types";
-import { useGlobal } from "@/lib/baseUtils/useGlobal";
+import { useGlobal } from "@/lib/baseUtils";
 import { useEpThemeStoreHook } from "@/store/modules/epTheme";
 import {
   darken,

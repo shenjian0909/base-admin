@@ -1,6 +1,6 @@
 import { message } from "@/utils/message";
 import { useEventListener } from "@vueuse/core";
-import { copyTextToClipboard } from "@pureadmin/utils";
+import { copyTextToClipboard } from "@/lib/baseUtils";
 import type { Directive, DirectiveBinding } from "vue";
 
 interface CopyEl extends HTMLElement {
@@ -10,7 +10,6 @@ interface CopyEl extends HTMLElement {
 /** 文本复制指令（默认双击复制） */
 export const copy: Directive = {
   mounted(el: CopyEl, binding: DirectiveBinding) {
-    console.log(binding);
     const { value } = binding;
     if (value !== undefined) {
       el.copyValue = value;

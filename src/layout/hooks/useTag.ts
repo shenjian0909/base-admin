@@ -15,7 +15,7 @@ import { transformI18n, $t } from "@/plugins/i18n";
 import { responsiveStorageNameSpace } from "@/config";
 import { useSettingStoreHook } from "@/store/modules/settings";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
-import { toggleClass, hasClass } from "@pureadmin/utils";
+import { toggleClass, hasClass } from "@/lib/baseUtils";
 import { isEqual, isBoolean, storageLocal } from "@/lib/baseUtils";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
 import CloseAllTags from "@iconify-icons/ri/subtract-line";

@@ -1,5 +1,5 @@
 import { type VNode } from "vue";
-import { isFunction } from "@pureadmin/utils";
+import { isFunction } from "@/lib/baseUtils";
 import { type MessageHandler, ElMessage } from "element-plus";
 
 type messageStyle = "el" | "antd";

@@ -9,13 +9,13 @@ import { router } from "./index";
 import { isProxy, toRaw } from "vue";
 import { useTimeoutFn } from "@vueuse/core";
 import {
+  storageSession,
   isString,
   cloneDeep,
-  isAllEmpty,
   intersection,
-  storageSession,
+  isAllEmpty,
   isIncludeAllChildren
-} from "@pureadmin/utils";
+} from "@/lib/baseUtils";
 import { getConfig } from "@/config";
 import { menuType } from "@/layout/types";
 import { buildHierarchyTree } from "@/utils/tree";

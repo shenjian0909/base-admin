@@ -5,7 +5,7 @@ import { emitter } from "@/utils/mitt";
 import { routeMetaType } from "../types";
 import userAvatar from "@/assets/user.jpg";
 import { getTopMenu } from "@/router/utils";
-import { useGlobal } from "@/lib/baseUtils/useGlobal";
+import { useGlobal } from "@/lib/baseUtils";
 import { transformI18n } from "@/plugins/i18n";
 import { router, remainingPaths } from "@/router";
 import { computed, type CSSProperties } from "vue";

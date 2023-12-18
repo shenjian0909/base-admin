@@ -7,7 +7,7 @@ import SearchFooter from "./SearchFooter.vue";
 import { useNav } from "@/layout/hooks/useNav";
 import { transformI18n } from "@/plugins/i18n";
 import { ref, computed, shallowRef } from "vue";
-import { cloneDeep, isAllEmpty } from "@pureadmin/utils";
+import { cloneDeep, isAllEmpty } from "@/lib/baseUtils";
 import { useDebounceFn, onKeyStroke } from "@vueuse/core";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import Search from "@iconify-icons/ri/search-line";

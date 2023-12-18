@@ -6,7 +6,7 @@ import {
   isBoolean,
   isFunction,
   getKeyList
-} from "@pureadmin/utils";
+} from "@/lib/baseUtils";
 
 import Sortable from "sortablejs";
 import DragIcon from "./svg/drag.svg?component";

@@ -22,7 +22,7 @@ import {
   formatFlatteningRoutes
 } from "./utils";
 import { buildHierarchyTree } from "@/utils/tree";
-import { isUrl, openLink, storageSession, isAllEmpty } from "@pureadmin/utils";
+import { isUrl, openLink, storageSession, isAllEmpty } from "@/lib/baseUtils";
 
 import remainingRouter from "./modules/remaining";
 

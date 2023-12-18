@@ -7,7 +7,7 @@ import { routerArrays } from "@/layout/types";
 import { handleAliveRoute, getTopMenu } from "@/router/utils";
 import { useSettingStoreHook } from "@/store/modules/settings";
 import { useResizeObserver, useFullscreen } from "@vueuse/core";
-import { isEqual, isAllEmpty, debounce } from "@pureadmin/utils";
+import { isEqual, isAllEmpty, debounce } from "@/lib/baseUtils";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { ref, watch, unref, toRaw, nextTick, onBeforeUnmount } from "vue";
 

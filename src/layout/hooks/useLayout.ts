@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { routerArrays } from "../types";
-import { useGlobal } from "@/lib/baseUtils/useGlobal";
+import { useGlobal } from "@/lib/baseUtils";
 import { useMultiTagsStore } from "@/store/modules/multiTags";
 
 export function useLayout() {
