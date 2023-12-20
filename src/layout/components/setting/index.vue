@@ -24,7 +24,6 @@ import { removeToken } from "@/utils/auth";
 import { routerArrays } from "@/layout/types";
 import { useNav } from "@/layout/hooks/useNav";
 import { useAppStoreHook } from "@/store/modules/app";
-import { toggleTheme } from "@pureadmin/theme/dist/browser-utils";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
 
@@ -46,6 +45,7 @@ const {
   dataTheme,
   layoutTheme,
   themeColors,
+  toggleTheme,
   dataThemeChange,
   setEpThemeColor,
   setLayoutThemeColor

@@ -2,7 +2,13 @@
  * @description ⚠️：此文件仅供主题插件使用，请不要在此文件中导出别的工具函数（仅在页面加载前运行）
  */
 
-import { type multipleScopeVarsOptions } from "@pureadmin/theme";
+export interface multipleScopeVarsOptions {
+  scopeName?: string;
+  /** 变量文件内容不应该夹带样式代码，设定上只需存在变量 */
+  path?: any;
+  /** `varsContent` 参数等效于 `path` 文件的内容，可以让 `defaultPrimaryColor` 与 `@primary-color` 值只写一遍，`varsContent` 与 `path` 必须选一个使用 */
+  varsContent?: string;
+}
 
 /** 预设主题色 */
 const themeColors = {

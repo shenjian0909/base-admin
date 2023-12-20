@@ -24,6 +24,14 @@ export default {
       meta: {
         title: $t("menus.hsicon")
       }
+    },
+    {
+      path: "/demo/theme",
+      name: "theme",
+      component: () => import("@/views/demo/theme.vue"),
+      meta: {
+        title: $t("menus.hstheme")
+      }
     }
   ]
 } as RouteConfigsTable;

@@ -4,7 +4,6 @@ import { useLayout } from "./useLayout";
 import { themeColorsType } from "../types";
 import { useGlobal } from "@/lib/baseUtils";
 import { useEpThemeStoreHook } from "@/store/modules/epTheme";
-import { addClassNameToHtmlTag } from "@/lib/theme";
 
 export interface multipleScopeVarsOptions {
   /** 预设主题色的名称 */
@@ -14,17 +13,64 @@ export interface multipleScopeVarsOptions {
   /** `varsContent` 参数等效于 `path` 文件的内容，可以让 `defaultPrimaryColor` 与 `@primary-color` 值只写一遍，`varsContent` 与 `path` 必须选一个使用 */
   varsContent?: string;
 }
+
+/** hex转rgb */
+function hexToRgb(str) {
+  const hxs = str.replace("#", "").match(/../g);
+  for (let i = 0; i < 3; i++) hxs[i] = parseInt(hxs[i], 16);
+  return hxs;
+}
+
+/** rgb转hex */
+function rgbToHex(a, b, c) {
+  const hexs = [a.toString(16), b.toString(16), c.toString(16)];
+  for (let i = 0; i < 3; i++) {
+    if (hexs[i].length == 1) hexs[i] = `0${hexs[i]}`;
+  }
+  return `#${hexs.join("")}`;
+}
+
+/** 加深颜色值 */
+export function darken(color, level) {
+  const rgbc = hexToRgb(color);
+  for (let i = 0; i < 3; i++) rgbc[i] = Math.floor(rgbc[i] * (1 - level));
+  return rgbToHex(rgbc[0], rgbc[1], rgbc[2]);
+}
+
+/** 变浅颜色值 */
+export function lighten(color, level) {
+  const rgbc = hexToRgb(color);
+  for (let i = 0; i < 3; i++)
+    rgbc[i] = Math.floor((255 - rgbc[i]) * level + rgbc[i]);
+  return rgbToHex(rgbc[0], rgbc[1], rgbc[2]);
+}
+
+function toggleTheme(options: multipleScopeVarsOptions): void {
+  // 将className添加到html标签上
+  console.log(options);
+}
+
 export function useDataThemeChange() {
   const { layoutTheme, layout } = useLayout();
   const themeColors = ref<Array<themeColorsType>>([
     /* 道奇蓝（默认） */
     { color: "#1b2a47", themeColor: "default" },
+    /* 亮白色 */
+    { color: "#ffffff", themeColor: "light" },
+    /* 猩红色 */
+    { color: "#f5222d", themeColor: "dusk" },
+    /* 橙红色 */
+    { color: "#fa541c", themeColor: "volcano" },
     /* 金色 */
     { color: "#fadb14", themeColor: "yellow" },
     /* 绿宝石 */
     { color: "#13c2c2", themeColor: "mingQing" },
+    /* 酸橙绿 */
+    { color: "#52c41a", themeColor: "auroraGreen" },
     /* 深粉色 */
-    { color: "#eb2f96", themeColor: "pink" }
+    { color: "#eb2f96", themeColor: "pink" },
+    /* 深紫罗兰色 */
+    { color: "#722ed1", themeColor: "saucePurple" }
   ]);
 
   const { $storage } = useGlobal<GlobalPropertiesApi>();
@@ -88,48 +134,11 @@ export function useDataThemeChange() {
     }
   }
 
-  function toggleTheme(themeOptions: multipleScopeVarsOptions) {
-    const { scopeName } = themeOptions;
-    addClassNameToHtmlTag(scopeName);
-  }
-
-  /** hex转rgb */
-  function hexToRgb(str) {
-    const hxs = str.replace("#", "").match(/../g);
-    for (let i = 0; i < 3; i++) hxs[i] = parseInt(hxs[i], 16);
-    return hxs;
-  }
-
-  /** rgb转hex */
-  function rgbToHex(a, b, c) {
-    const hexs = [a.toString(16), b.toString(16), c.toString(16)];
-    for (let i = 0; i < 3; i++) {
-      if (hexs[i].length == 1) hexs[i] = `0${hexs[i]}`;
-    }
-    return `#${hexs.join("")}`;
-  }
-
-  /** 加深颜色值 */
-  function darken(color, level) {
-    const rgbc = hexToRgb(color);
-    for (let i = 0; i < 3; i++) rgbc[i] = Math.floor(rgbc[i] * (1 - level));
-    return rgbToHex(rgbc[0], rgbc[1], rgbc[2]);
-  }
-
-  /** 变浅颜色值 */
-  function lighten(color, level) {
-    const rgbc = hexToRgb(color);
-    for (let i = 0; i < 3; i++)
-      rgbc[i] = Math.floor((255 - rgbc[i]) * level + rgbc[i]);
-    return rgbToHex(rgbc[0], rgbc[1], rgbc[2]);
-  }
-
   return {
     body,
     dataTheme,
     layoutTheme,
     themeColors,
-    toggleTheme,
     dataThemeChange,
     setEpThemeColor,
     setLayoutThemeColor

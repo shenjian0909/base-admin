@@ -19,6 +19,12 @@ import "element-plus/dist/index.css";
 import "./assets/iconfont/iconfont.js";
 import "./assets/iconfont/iconfont.css";
 
+// 主题样式
+import "./assets/theme/layout-theme-default.css";
+import "./assets/theme/layout-theme-mingQing.css";
+import "./assets/theme/layout-theme-pink.css";
+import "./assets/theme/layout-theme-yellow.css";
+
 const app = createApp(App);
 
 // 自定义指令
