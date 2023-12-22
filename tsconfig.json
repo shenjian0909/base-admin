@@ -17,17 +17,22 @@
     "baseUrl": ".",
     "allowJs": false,
     "resolveJsonModule": true,
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "paths": {
-      "@/*": ["src/*"],
-      "@build/*": ["build/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@build/*": [
+        "build/*"
+      ]
     },
     "types": [
       "node",
       "vite/client",
-      "element-plus/global",
-      "@pureadmin/table/volar",
-      "@pureadmin/descriptions/volar"
+      "element-plus/global"
     ]
   },
   "include": [
@@ -38,5 +43,9 @@
     "types/*.d.ts",
     "vite.config.ts"
   ],
-  "exclude": ["dist", "**/*.js", "node_modules"]
+  "exclude": [
+    "dist",
+    "**/*.js",
+    "node_modules"
+  ]
 }

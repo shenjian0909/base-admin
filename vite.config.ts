@@ -46,6 +46,14 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       // 本地跨域代理 https://cn.vitejs.dev/config/server-options.html#server-proxy
       proxy: {}
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@/style/theme_vars.scss";`,
+          javascriptEnabled: true
+        }
+      }
+    },
     plugins: getPluginsList(command, VITE_CDN, VITE_COMPRESSION),
     // https://cn.vitejs.dev/config/dep-optimization-options.html#dep-optimization-options
     optimizeDeps: {

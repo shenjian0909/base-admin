@@ -1,4 +1,3 @@
-import { getPackageSize } from "./build";
 import type { SFCWithInstall } from "./types";
 import { storageLocal, storageSession } from "./storage";
 import { copyTextToClipboard } from "./copyText";
@@ -136,10 +135,10 @@ function isEmpty(t) {
   return isArray(t) || isString(t)
     ? t.length === 0
     : t instanceof Map || t instanceof Set
-    ? t.size === 0
-    : isObject(t)
-    ? Object.keys(t).length === 0
-    : false;
+      ? t.size === 0
+      : isObject(t)
+        ? Object.keys(t).length === 0
+        : false;
 }
 
 function delay(delay = 20) {
@@ -256,7 +255,6 @@ export {
   toggleClass
 };
 export default {
-  getPackageSize,
   withInstall,
   storageLocal,
   storageSession
