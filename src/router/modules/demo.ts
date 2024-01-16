@@ -32,6 +32,14 @@ export default {
       meta: {
         title: $t("menus.hstheme")
       }
+    },
+    {
+      path: "/demo/table",
+      name: "table",
+      component: () => import("@/views/demo/table.vue"),
+      meta: {
+        title: "表格"
+      }
     }
   ]
 } as RouteConfigsTable;
