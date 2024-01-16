@@ -14,16 +14,18 @@
 import { ref } from "vue";
 import ComTable from "@/components/ComTable/index.vue";
 import { ElMessage } from "element-plus";
+import { ColumnProps } from "@/components/ComTable/interface";
 const activeName = ref("first");
 const handleClick = () => {};
-const tableData = [];
-const columns = [
+const tableData = [{ id: 1, username: "zhangsan", age: 12 }];
+const columns: ColumnProps[] = [
   { type: "selection", fixed: "left", width: 70 },
   { type: "sort", label: "Sort", width: 80 },
   { type: "expand", label: "Expand", width: 85 },
   {
     prop: "username",
     label: "用户姓名",
+    isShow: true,
     render: scope => {
       return (
         <el-button
@@ -35,6 +37,12 @@ const columns = [
         </el-button>
       );
     }
+  },
+  {
+    prop: "age",
+    label: "年龄",
+    width: "120px",
+    isShow: true
   }
 ];
 </script>
