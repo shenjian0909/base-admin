@@ -23,7 +23,6 @@
         </slot>
       </div>
     </div>
-    {{ tableColumns }}
     <!-- 表格主体 -->
     <el-table
       ref="tableRef"
@@ -76,7 +75,7 @@
       </template>
     </el-table>
     <!-- 分页部分 -->
-    <div v-if="isPageable" class="paging my10">
+    <div v-if="isPageable" class="paging my10 mt-3">
       <el-pagination
         class="pagination"
         layout="prev, pager, next , total,jumper"
@@ -118,6 +117,7 @@ const props = withDefaults(defineProps<ComTableProps>(), {
   }),
   tableData: () => [],
   rowKey: "id",
+  border: true,
   loading: false,
   toolButton: false
 });
