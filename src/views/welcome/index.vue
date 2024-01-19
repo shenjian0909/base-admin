@@ -5,5 +5,5 @@ defineOptions({
 </script>
 
 <template>
-  <h1>Pure-Admin-Thin（国际化版本）</h1>
+  <div class="h-full bg-white rounded-xl p-3">123</div>
 </template>

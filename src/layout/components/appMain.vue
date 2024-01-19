@@ -84,43 +84,27 @@ const transitionMain = defineComponent({
           <el-backtop title="回到顶部" target=".app-main .el-scrollbar__wrap">
             <backTop />
           </el-backtop>
-          <transitionMain :route="route">
-            <keep-alive
-              v-if="keepAlive"
-              :include="usePermissionStoreHook().cachePageList"
-            >
-              <component
-                :is="Component"
-                :key="route.fullPath"
-                class="main-content"
-              />
-            </keep-alive>
-            <component
-              v-else
-              :is="Component"
-              :key="route.fullPath"
-              class="main-content"
-            />
-          </transitionMain>
+          <div class="main-content">
+            <transitionMain :route="route">
+              <keep-alive
+                v-if="keepAlive"
+                :include="usePermissionStoreHook().cachePageList"
+              >
+                <component :is="Component" :key="route.fullPath" />
+              </keep-alive>
+              <component v-else :is="Component" :key="route.fullPath" />
+            </transitionMain>
+          </div>
         </el-scrollbar>
-        <div v-else>
+        <div v-else class="main-content">
           <transitionMain :route="route">
             <keep-alive
               v-if="keepAlive"
               :include="usePermissionStoreHook().cachePageList"
             >
-              <component
-                :is="Component"
-                :key="route.fullPath"
-                class="main-content"
-              />
+              <component :is="Component" :key="route.fullPath" />
             </keep-alive>
-            <component
-              v-else
-              :is="Component"
-              :key="route.fullPath"
-              class="main-content"
-            />
+            <component v-else :is="Component" :key="route.fullPath" />
           </transitionMain>
         </div>
       </template>
@@ -143,6 +127,8 @@ const transitionMain = defineComponent({
 }
 
 .main-content {
-  margin: 24px;
+  padding: 12px;
+  height: 100%;
+  overflow: auto;
 }
 </style>
