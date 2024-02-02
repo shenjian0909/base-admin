@@ -44,7 +44,6 @@ const getTagType = (item: ColumnProps, scope: RenderScope<any>) => {
 };
 
 const RenderTableColumn = (item: ColumnProps) => {
-  console.log(item);
   return (
     <>
       {item.isShow && (

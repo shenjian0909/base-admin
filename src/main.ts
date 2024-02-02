@@ -47,6 +47,10 @@ app.component("FontIcon", FontIcon);
 import { Auth } from "@/components/ReAuth";
 app.component("Auth", Auth);
 
+// 全局组件下拉框
+import CommonSelect from "@/components/CommonSelect/index.vue";
+app.component("CommonSelect", CommonSelect);
+
 getServerConfig(app).then(async config => {
   app.use(router);
   await router.isReady();
