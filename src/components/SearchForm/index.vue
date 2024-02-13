@@ -1,6 +1,6 @@
 <template>
-  <div v-if="columns.length" class="card table-search">
-    <el-form ref="formRef" :model="searchParam">
+  <div v-if="columns.length" class="card comnom-search">
+    <el-form ref="formRef" :model="searchParam" label-width="100px">
       <Grid
         ref="gridRef"
         :collapsed="collapsed"
@@ -116,3 +116,10 @@ const showCollapse = computed(() => {
   return show;
 });
 </script>
+<style lang="scss" scoped>
+.comnom-search {
+  :deep(.el-form-item__content > *) {
+    width: 100%;
+  }
+}
+</style>

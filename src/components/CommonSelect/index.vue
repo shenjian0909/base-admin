@@ -1,6 +1,12 @@
 <template>
   <div class="common-select">
-    <el-select v-model="selectVal" @change="change" v-bind="$attrs" clearable>
+    <el-select
+      style="width: 100%"
+      v-model="selectVal"
+      @change="change"
+      v-bind="$attrs"
+      clearable
+    >
       <template v-for="item in optionList" :key="item.id">
         <el-option :label="item.label" :value="item.value" />
       </template>
