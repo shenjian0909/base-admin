@@ -7,6 +7,7 @@ import { getServerConfig } from "./config";
 import { createApp, Directive } from "vue";
 import { MotionPlugin } from "@vueuse/motion";
 import { injectResponsiveStorage } from "@/utils/responsive";
+import installComponent from "./components";
 
 // 引入重置样式
 import "./style/reset.scss";
@@ -33,23 +34,8 @@ Object.keys(directives).forEach(key => {
   app.directive(key, (directives as { [key: string]: Directive })[key]);
 });
 
-// 全局注册`@iconify/vue`图标库
-import {
-  IconifyIconOffline,
-  IconifyIconOnline,
-  FontIcon
-} from "./components/ReIcon";
-app.component("IconifyIconOffline", IconifyIconOffline);
-app.component("IconifyIconOnline", IconifyIconOnline);
-app.component("FontIcon", FontIcon);
-
-// 全局注册按钮级别权限组件
-import { Auth } from "@/components/ReAuth";
-app.component("Auth", Auth);
-
-// 全局组件下拉框
-import CommonSelect from "@/components/CommonSelect/index.vue";
-app.component("CommonSelect", CommonSelect);
+// 全局组件
+installComponent(app);
 
 getServerConfig(app).then(async config => {
   app.use(router);

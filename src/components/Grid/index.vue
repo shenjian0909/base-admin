@@ -72,7 +72,6 @@ const resize = (e: UIEvent) => {
       breakPoint.value = "xl";
       break;
   }
-  console.log("breakPoint: ", breakPoint.value);
 };
 
 // 注入 gap 间距

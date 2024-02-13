@@ -34,7 +34,6 @@ const isShow = ref(true);
 
 // 注入断点
 const breakPoint = inject<Ref<BreakPoint>>("breakPoint", ref("xl"));
-console.log("=============", breakPoint.value);
 const shouldHiddenIndex = inject<Ref<number>>("shouldHiddenIndex", ref(-1));
 watch(
   () => [shouldHiddenIndex.value, breakPoint.value],
@@ -51,7 +50,6 @@ const cols = inject("cols", ref(4));
 const style = computed(() => {
   const span = props[breakPoint.value]?.span ?? props.span;
   const offset = props[breakPoint.value]?.offset ?? props.offset;
-  console.log("style: ", span, offset);
   if (props.suffix) {
     return {
       gridColumnStart: cols.value - span - offset + 1,

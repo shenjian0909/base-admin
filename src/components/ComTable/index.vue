@@ -30,7 +30,6 @@
       :data="tableData"
       :border="border"
       :row-key="rowKey"
-      @selection-change="handleSelectionChange"
     >
       <!-- 默认插槽 -->
       <slot />
@@ -101,12 +100,7 @@ import type {
   TypeProps,
   ColumnProps
 } from "@/components/ComTable/interface";
-const emits = defineEmits([
-  "selection-change",
-  "current-change",
-  "size-change",
-  "refresh-table"
-]);
+const emits = defineEmits(["current-change", "size-change", "refresh-table"]);
 const props = withDefaults(defineProps<ComTableProps>(), {
   columns: () => [],
   isPageable: true,
@@ -157,11 +151,6 @@ const colSetting = tableColumns!.filter(item => {
   return !columnTypes.includes(type!) && prop !== "operation" && isShow;
 });
 const openColSetting = () => colRef.value.openColSetting();
-
-// 多选
-const handleSelectionChange = (rows: any) => {
-  emits("selection-change", rows);
-};
 
 // 点击翻页
 const handleCurrentChange = (value: number) => {

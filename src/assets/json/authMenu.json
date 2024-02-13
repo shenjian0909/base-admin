@@ -1,27 +1,28 @@
-{
-  "path": "/permission",
-  "meta": {
-    "title": "menus.permission",
-    "icon": "lollipop",
-    "rank": 10
-  },
-  "children": [
-    {
-      "path": "/permission/page/index",
-      "name": "PermissionPage",
-      "meta": {
-        "title": "menus.permissionPage",
-        "roles": ["admin", "common"]
-      }
+[
+  {
+    "path": "/system",
+    "meta": {
+      "title": "系统管理",
+      "icon": "lollipop",
+      "rank": 9
     },
-    {
-      "path": "/permission/button/index",
-      "name": "PermissionButton",
-      "meta": {
-        "title": "menus.permissionButton",
-        "roles": ["admin", "common"],
-        "auths": ["btn_add", "btn_edit", "btn_delete"]
+    "children": [
+      {
+        "path": "/system/menu",
+        "component": "system/menu/index",
+        "name": "systemMenu",
+        "meta": {
+          "title": "菜单管理"
+        }
+      },
+      {
+        "path": "/system/role",
+        "component": "system/role/index",
+        "name": "systemRole",
+        "meta": {
+          "title": "角色管理"
+        }
       }
-    }
-  ]
-}
+    ]
+  }
+]

@@ -19,7 +19,6 @@ function getRegstr(scopeName) {
 
 // 将className添加到html标签上
 export function addClassNameToHtmlTag(scopeName) {
-  console.log(scopeName);
   let currentClassName = document.documentElement.className;
 
   if (new RegExp(getRegstr(scopeName)).test(currentClassName)) {

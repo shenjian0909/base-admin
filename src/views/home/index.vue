@@ -1,9 +1,9 @@
 <script setup lang="ts">
 defineOptions({
-  name: "Welcome"
+  name: "Home"
 });
 </script>
 
 <template>
-  <div class="h-full bg-white rounded-xl p-3">123</div>
+  <div class="h-full bg-white rounded p-[10px]">123</div>
 </template>

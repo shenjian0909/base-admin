@@ -2,6 +2,7 @@
   <template v-if="props.column?.el === 'commonSelect'">
     <common-select
       :type="props.column?.selectType"
+      v-bind="column"
       v-model="_searchParam[props.column?.key]"
     />
   </template>

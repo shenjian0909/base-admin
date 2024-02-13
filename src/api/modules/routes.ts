@@ -11,7 +11,7 @@ export const getAsyncRoutes = () => {
   return new Promise<Result>(resolve => {
     resolve({
       success: true,
-      data: [authMenuList]
+      data: authMenuList
     });
   });
 };

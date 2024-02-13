@@ -5,7 +5,6 @@
       v-model="selectVal"
       @change="change"
       v-bind="$attrs"
-      clearable
     >
       <template v-for="item in optionList" :key="item.id">
         <el-option :label="item.label" :value="item.value" />
