@@ -1,27 +1,50 @@
 [
   {
+    "id": "121856222521775925",
+    "menuType": "1",
+    "title": "系统管理",
+    "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+    "rank": 1,
+    "isUrl": "False",
     "path": "/system",
-    "meta": {
-      "title": "系统管理",
-      "icon": "lollipop",
-      "rank": 9
-    },
+    "showLink": "True",
+    "name": "system",
     "children": [
       {
+        "id": 13,
+        "menuType": "2",
+        "title": "菜单管理",
+        "name": "menu",
+        "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+        "rank": 3,
+        "isUrl": "False",
         "path": "/system/menu",
         "component": "system/menu/index",
-        "name": "systemMenu",
-        "meta": {
-          "title": "菜单管理"
-        }
+        "showLink": "True"
       },
       {
+        "id": 11,
+        "menuType": "2",
+        "title": "用户管理",
+        "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+        "rank": 1,
+        "name": "userManage",
+        "isUrl": "False",
+        "path": "/system/userManage",
+        "component": "system/userManage/index",
+        "showLink": "True"
+      },
+      {
+        "id": 12,
+        "menuType": "2",
+        "title": "角色管理",
+        "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+        "rank": 2,
+        "isUrl": "False",
+        "name": "role",
         "path": "/system/role",
         "component": "system/role/index",
-        "name": "systemRole",
-        "meta": {
-          "title": "角色管理"
-        }
+        "showLink": "True"
       }
     ]
   }

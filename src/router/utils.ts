@@ -30,10 +30,9 @@ const modulesRoutes = import.meta.glob("/src/views/**/*.{vue,tsx}");
 import { getAsyncRoutes } from "@/api/modules/routes";
 
 function handRank(routeInfo: any) {
-  const { name, path, parentId, meta } = routeInfo;
+  const { name, path, parentId, rank } = routeInfo;
   return isAllEmpty(parentId)
-    ? isAllEmpty(meta?.rank) ||
-      (meta?.rank === 0 && name !== "Home" && path !== "/")
+    ? isAllEmpty(rank) || (rank === 0 && name !== "Home" && path !== "/")
       ? true
       : false
     : false;
@@ -43,13 +42,11 @@ function handRank(routeInfo: any) {
 function ascending(arr: any[]) {
   arr.forEach((v, index) => {
     // 当rank不存在时，根据顺序自动创建，首页路由永远在第一位
-    if (handRank(v)) v.meta.rank = index + 2;
+    if (handRank(v)) v.rank = index + 2;
   });
-  return arr.sort(
-    (a: { meta: { rank: number } }, b: { meta: { rank: number } }) => {
-      return a?.meta.rank - b?.meta.rank;
-    }
-  );
+  return arr.sort((a: { rank: number }, b: { rank: number }) => {
+    return a?.rank - b?.rank;
+  });
 }
 
 /** 过滤meta中showLink为false的菜单 */
@@ -152,7 +149,7 @@ function addPathMatch() {
 /** 处理动态路由（后端返回的路由） */
 function handleAsyncRoutes(routeList) {
   if (routeList.length === 0) {
-    usePermissionStoreHook().handleWholeMenus(routeList);
+    usePermissionStoreHook().handleWholeMenus([]);
   } else {
     formatFlatteningRoutes(addAsyncRoutes(routeList)).map(
       (v: RouteRecordRaw) => {
@@ -176,6 +173,8 @@ function handleAsyncRoutes(routeList) {
         }
       }
     );
+    console.log("routerList: ", routeList);
+    console.log("routes: ", router.options.routes[0].children);
     usePermissionStoreHook().handleWholeMenus(routeList);
   }
   addPathMatch();
@@ -290,20 +289,21 @@ function handleAliveRoute({ name }: ToRouteType, mode?: string) {
   }
 }
 
-/** 过滤后端传来的动态路由 重新生成规范路由 */
+/** 过滤后端传来的动态路由 重新生成规范路由 替换component为前端组件 */
 function addAsyncRoutes(arrRoutes: Array<RouteRecordRaw>) {
   if (!arrRoutes || !arrRoutes.length) return;
   const modulesRoutesKeys = Object.keys(modulesRoutes);
-  arrRoutes.forEach((v: RouteRecordRaw) => {
+  arrRoutes.forEach((v: any) => {
     // 将backstage属性加入meta，标识此路由为后端返回路由
-    v.meta.backstage = true;
+    v.backstage = true;
     // 父级的redirect属性取值：如果子级存在且父级的redirect属性不存在，默认取第一个子级的path；如果子级存在且父级的redirect属性存在，取存在的redirect属性，会覆盖默认值
     if (v?.children && v.children.length && !v.redirect)
       v.redirect = v.children[0].path;
     // 父级的name属性取值：如果子级存在且父级的name属性不存在，默认取第一个子级的name；如果子级存在且父级的name属性存在，取存在的name属性，会覆盖默认值（注意：测试中发现父级的name不能和子级name重复，如果重复会造成重定向无效（跳转404），所以这里给父级的name起名的时候后面会自动加上`Parent`，避免重复）
-    if (v?.children && v.children.length && !v.name)
+    if (v?.children && v.children.length && !v.name) {
       v.name = (v.children[0].name as string) + "Parent";
-    if (v.meta?.frameSrc) {
+    }
+    if (v?.frameSrc) {
       v.component = IFrame;
     } else {
       // 对后端传component组件路径和不传做兼容
@@ -318,6 +318,7 @@ function addAsyncRoutes(arrRoutes: Array<RouteRecordRaw>) {
       addAsyncRoutes(v.children);
     }
   });
+  console.log("addAsyncRoutes: ", arrRoutes);
   return arrRoutes;
 }
 

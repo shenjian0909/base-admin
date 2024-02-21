@@ -6,6 +6,9 @@ export default [
     path: "/login",
     name: "Login",
     component: () => import("@/views/login/index.vue"),
+    title: "登录",
+    rank: 101,
+    showLink: "False",
     meta: {
       title: $t("menus.hslogin"),
       showLink: false,

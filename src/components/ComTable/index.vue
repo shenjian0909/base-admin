@@ -1,93 +1,105 @@
 <template>
-  <!-- 表格主体 -->
-  <div class="card table-main">
-    <!-- 表格头部 操作按钮 -->
-    <div class="table-header">
-      <div class="header-button-lf">
-        <slot name="tableHeader" />
-      </div>
-      <div v-if="toolButton" class="header-button-ri">
-        <slot name="toolButton">
-          <el-button
-            v-if="showToolButton('refresh')"
-            :icon="Refresh"
-            circle
-            @click="refreshTable"
-          />
-          <el-button
-            v-if="showToolButton('setting') && columns.length"
-            :icon="Operation"
-            circle
-            @click="openColSetting"
-          />
-        </slot>
-      </div>
-    </div>
+  <div class="common-table">
     <!-- 表格主体 -->
-    <el-table
-      ref="tableRef"
-      v-bind="$attrs"
-      :data="tableData"
-      :border="border"
-      :row-key="rowKey"
-    >
-      <!-- 默认插槽 -->
-      <slot />
-      <template v-for="item in tableColumns" :key="item">
-        <!-- selection || radio || index || expand || sort -->
-        <el-table-column
-          v-if="item.type && columnTypes.includes(item.type)"
-          v-bind="item"
-          :align="item.align ?? 'center'"
-          :reserve-selection="item.type == 'selection'"
+    <div class="card table-main">
+      <!-- 表格头部 操作按钮 -->
+      <div class="table-header">
+        <div class="header-button-lf">
+          <slot name="tableHeader" />
+        </div>
+        <div v-if="toolButton" class="header-button-ri">
+          <slot name="toolButton">
+            <el-button
+              v-if="showToolButton('refresh')"
+              :icon="Refresh"
+              circle
+              @click="refreshTable"
+            />
+            <el-button
+              v-if="showToolButton('setting') && columns.length"
+              :icon="Operation"
+              circle
+              @click="openColSetting"
+            />
+          </slot>
+        </div>
+      </div>
+      <!-- 表格主体 -->
+      <div class="table-content">
+        <el-table
+          ref="tableRef"
+          v-bind="$attrs"
+          :data="tableData"
+          :border="border"
+          :row-key="rowKey"
         >
-          <template #default="scope">
-            <!-- expand -->
-            <template v-if="item.type == 'expand'">
-              <component :is="item.render" v-bind="scope" v-if="item.render" />
-              <slot v-else :name="item.type" v-bind="scope" />
-            </template>
-            <!-- radio -->
-            <el-radio
-              v-if="item.type == 'radio'"
-              v-model="radio"
-              :label="scope.row[rowKey]"
+          <!-- 默认插槽 -->
+          <slot />
+          <template v-for="item in tableColumns" :key="item">
+            <!-- selection || radio || index || expand || sort -->
+            <el-table-column
+              v-if="item.type && columnTypes.includes(item.type)"
+              v-bind="item"
+              :align="item.align ?? 'center'"
+              :reserve-selection="item.type == 'selection'"
             >
-              <i />
-            </el-radio>
-            <!-- sort -->
-            <el-tag v-if="item.type == 'sort'" class="move">
-              <el-icon> <DCaret /></el-icon>
-            </el-tag>
+              <template #default="scope">
+                <!-- expand -->
+                <template v-if="item.type == 'expand'">
+                  <component
+                    :is="item.render"
+                    v-bind="scope"
+                    v-if="item.render"
+                  />
+                  <slot v-else :name="item.type" v-bind="scope" />
+                </template>
+                <!-- radio -->
+                <el-radio
+                  v-if="item.type == 'radio'"
+                  v-model="radio"
+                  :label="scope.row[rowKey]"
+                >
+                  <i />
+                </el-radio>
+                <!-- sort -->
+                <el-tag v-if="item.type == 'sort'" class="move">
+                  <el-icon> <DCaret /></el-icon>
+                </el-tag>
+              </template>
+            </el-table-column>
+            <!-- other -->
+            <TableColumn v-if="!item.type && item.prop" :column="item">
+              <template v-for="slot in Object.keys($slots)" #[slot]="scope">
+                <slot :name="slot" v-bind="scope" />
+              </template>
+            </TableColumn>
           </template>
-        </el-table-column>
-        <!-- other -->
-        <TableColumn v-if="!item.type && item.prop" :column="item">
-          <template v-for="slot in Object.keys($slots)" #[slot]="scope">
-            <slot :name="slot" v-bind="scope" />
+          <!-- 插入表格最后一行之后的插槽 -->
+          <template #append>
+            <slot name="append" />
           </template>
-        </TableColumn>
-      </template>
-      <!-- 插入表格最后一行之后的插槽 -->
-      <template #append>
-        <slot name="append" />
-      </template>
-    </el-table>
-    <!-- 分页部分 -->
-    <div v-if="isPageable" class="paging my10 mt-3">
-      <el-pagination
-        class="pagination"
-        layout="prev, pager, next , total,jumper"
-        v-model:page-size="page.pageSize"
-        v-model:current-page="page.pageNum"
-        @current-change="handleCurrentChange"
-        @size-change="handleSizeChange"
-        :total="page.total"
-      />
+        </el-table>
+      </div>
+      <!-- 分页部分 -->
+      <div v-if="isPageable" class="paging my10 mt-3">
+        <el-pagination
+          class="pagination"
+          layout="prev, pager, next , total,jumper"
+          v-model:page-size="page.pageSize"
+          v-model:current-page="page.pageNum"
+          @current-change="handleCurrentChange"
+          @size-change="handleSizeChange"
+          :total="page.total"
+        />
+      </div>
     </div>
+    <!-- 列设置 -->
+    <ColSetting
+      v-if="toolButton"
+      ref="colRef"
+      v-model:col-setting="colSetting"
+    />
   </div>
-  <!-- 列设置 -->
-  <ColSetting v-if="toolButton" ref="colRef" v-model:col-setting="colSetting" />
 </template>
 <script setup lang="ts">
 import { ref, reactive } from "vue";
@@ -171,4 +183,17 @@ defineExpose({
   radio
 });
 </script>
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.table-main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .table-content {
+    flex: 1;
+    :deep(.el-table) {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+</style>

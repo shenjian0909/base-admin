@@ -55,7 +55,7 @@ const onLogin = async (formEl: FormInstance | undefined) => {
           if (res.success) {
             // 获取后端路由
             initRouter().then(() => {
-              router.push(getTopMenu(true).path);
+              router.push("/home");
               message("登录成功", { type: "success" });
             });
           }

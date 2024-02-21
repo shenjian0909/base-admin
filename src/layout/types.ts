@@ -6,10 +6,8 @@ export const routerArrays: Array<RouteConfigs> =
     ? [
         {
           path: "/home",
-          meta: {
-            title: "menus.hshome",
-            icon: "homeFilled"
-          }
+          title: "menus.hshome",
+          icon: "homeFilled"
         }
       ]
     : [];
@@ -29,6 +27,8 @@ export type RouteConfigs = {
   meta?: routeMetaType;
   children?: RouteConfigs[];
   name?: string;
+  title?: string;
+  icon?: string;
 };
 
 export type multiTagsType = {

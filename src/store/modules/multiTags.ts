@@ -49,6 +49,8 @@ export const useMultiTagsStore = defineStore({
       value?: T | multiType,
       position?: positionType
     ): T {
+      console.log("mode: ", mode);
+      console.log("value: ", value);
       switch (mode) {
         case "equal":
           this.multiTags = value;
@@ -56,13 +58,13 @@ export const useMultiTagsStore = defineStore({
           break;
         case "push":
           {
-            const tagVal = value as multiType;
+            const tagVal: any = value;
             // 不添加到标签页
-            if (tagVal?.meta?.hiddenTag) return;
+            if (tagVal?.hiddenTag) return;
             // 如果是外链无需添加信息到标签页
             if (isUrl(tagVal?.name)) return;
             // 如果title为空拒绝添加空信息到标签页
-            if (tagVal?.meta?.title.length === 0) return;
+            if (tagVal?.title.length === 0) return;
             // showLink:false 不添加到标签页
             // if (isBoolean(tagVal?.meta?.showLink) && !tagVal?.meta?.showLink)
             //   return;
@@ -85,7 +87,7 @@ export const useMultiTagsStore = defineStore({
             if (tagHasExits && tagQueryHasExits && tagParamsHasExits) return;
 
             // 动态路由可打开的最大数量
-            const dynamicLevel = tagVal?.meta?.dynamicLevel ?? -1;
+            const dynamicLevel = tagVal?.dynamicLevel ?? -1;
             if (dynamicLevel > 0) {
               if (
                 this.multiTags.filter(e => e?.path === tagPath).length >=

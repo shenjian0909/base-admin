@@ -142,10 +142,11 @@ function dynamicRouteTag(value: string): void {
   function concatPath(arr: object[], value: string) {
     if (!hasValue) {
       arr.forEach((arrItem: any) => {
+        console.log("concatPath: ", arrItem);
         if (arrItem.path === value || arrItem.path === value) {
           useMultiTagsStoreHook().handleTags("push", {
             path: value,
-            meta: arrItem.meta,
+            title: arrItem.title,
             name: arrItem.name
           });
         } else {
@@ -242,20 +243,20 @@ function deleteMenu(item, tag?: string) {
   handleAliveRoute(route as ToRouteType);
 }
 
-function onClickDrop(key, item, selectRoute?: RouteConfigs) {
+function onClickDrop(key, item, selectRoute?: any) {
   if (item && item.disabled) return;
 
   let selectTagRoute;
   if (selectRoute) {
     selectTagRoute = {
       path: selectRoute.path,
-      meta: selectRoute.meta,
+      title: selectRoute.title,
       name: selectRoute.name,
       query: selectRoute?.query,
       params: selectRoute?.params
     };
   } else {
-    selectTagRoute = { path: route.path, meta: route.meta };
+    selectTagRoute = { path: route.path, title: route.title };
   }
 
   // 当前路由信息
@@ -538,7 +539,7 @@ onBeforeUnmount(() => {
             :to="item.path"
             class="dark:!text-text_color_primary dark:hover:!text-primary"
           >
-            {{ transformI18n(item.meta.title) }}
+            {{ transformI18n(item.title) }}
           </router-link>
           <span
             v-if="
