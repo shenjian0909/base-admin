@@ -27,7 +27,6 @@ import Close from "@iconify-icons/ep/close";
 
 export function useTags() {
   const route = useRoute();
-  console.log("route====", route);
   const router = useRouter();
   const instance = getCurrentInstance();
   const pureSetting = useSettingStoreHook();

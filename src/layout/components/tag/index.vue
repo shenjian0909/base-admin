@@ -142,7 +142,6 @@ function dynamicRouteTag(value: string): void {
   function concatPath(arr: object[], value: string) {
     if (!hasValue) {
       arr.forEach((arrItem: any) => {
-        console.log("concatPath: ", arrItem);
         if (arrItem.path === value || arrItem.path === value) {
           useMultiTagsStoreHook().handleTags("push", {
             path: value,

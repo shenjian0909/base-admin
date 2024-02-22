@@ -28,8 +28,6 @@ const menuData = computed(() => {
     : usePermissionStoreHook().wholeMenus;
 });
 
-console.log("menuData: ", menuData.value);
-
 const loading = computed(() =>
   pureApp.layout === "mix" ? false : menuData.value.length === 0 ? true : false
 );

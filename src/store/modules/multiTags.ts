@@ -49,8 +49,6 @@ export const useMultiTagsStore = defineStore({
       value?: T | multiType,
       position?: positionType
     ): T {
-      console.log("mode: ", mode);
-      console.log("value: ", value);
       switch (mode) {
         case "equal":
           this.multiTags = value;

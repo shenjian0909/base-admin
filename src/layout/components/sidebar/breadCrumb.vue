@@ -31,13 +31,13 @@ const getBreadcrumb = (): void => {
   } else {
     currentRoute = findRouteByPath(router.currentRoute.value.path, routes);
   }
-
   // 当前路由的父级路径组成的数组
   const parentRoutes = getParentPaths(
     router.currentRoute.value.name as string,
     routes,
     "name"
   );
+
   // 存放组成面包屑的数组
   const matched = [];
 
@@ -52,16 +52,14 @@ const getBreadcrumb = (): void => {
     if (currentRoute?.query || currentRoute?.params) return;
     if (item?.children) {
       item.children.forEach(v => {
-        if (v?.meta?.title === item?.meta?.title) {
+        if (v?.title === item?.title) {
           matched.splice(index, 1);
         }
       });
     }
   });
 
-  levelList.value = matched.filter(
-    item => item?.meta && item?.meta.title !== false
-  );
+  levelList.value = matched.filter(item => item && item.title !== false);
 };
 
 const handleLink = (item: RouteLocationMatched): void => {
@@ -97,7 +95,7 @@ watch(
         :key="item.path"
       >
         <a @click.prevent="handleLink(item)">
-          {{ transformI18n(item.meta.title) }}
+          {{ transformI18n(item.title) }}
         </a>
       </el-breadcrumb-item>
     </transition-group>
