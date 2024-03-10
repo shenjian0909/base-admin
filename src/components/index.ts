@@ -16,7 +16,7 @@ import CommonSelect from "@/components/CommonSelect/index.vue";
 import SearchForm from "@/components/SearchForm/index.vue";
 
 // 表格组件
-import ComTable from "@/components/ComTable/index.vue";
+import ComTable from "@/components/CommonTable/ComTable.vue";
 
 export function installComponent(app: App<Element>) {
   app.component("IconifyIconOffline", IconifyIconOffline);

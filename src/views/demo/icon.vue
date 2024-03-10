@@ -35,7 +35,9 @@
     <div class="w-96 flex justify-between">
       <!--传入svg图标-->
       <component :is="useRenderIcon(BackTop)" />
-
+      <component :is="useRenderIcon(Day)" />
+    </div>
+    <div class="w-96 flex justify-between">
       <!--传入iconify图标-->
       <el-input :prefix-icon="useRenderIcon(Delete)" />
       <el-button type="primary" :icon="useRenderIcon(Search)">查询</el-button>
@@ -54,6 +56,7 @@
 <script setup lang="ts">
 import BackTop from "@/assets/svg/back_top.svg?component";
 import Dark from "@/assets/svg/dark.svg?component";
+import Day from "@/assets/svg/day.svg";
 import Edit from "@iconify-icons/ep/edit";
 import Delete from "@iconify-icons/ep/delete";
 import Search from "@iconify-icons/ep/search";

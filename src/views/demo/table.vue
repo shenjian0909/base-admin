@@ -7,122 +7,36 @@
       <el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
     </el-tabs>
 
-    <!--搜索条件-->
-    {{ searchParam }}
-    <SearchForm
-      :columns="searchColumns"
-      :search-param="searchParam"
-      :search="search"
-      :reset="reset"
-    />
-
     <el-button type="primary" @click="getTableRef">获取表格实例</el-button>
     <el-button type="primary" @click="getSelectedRow">获取多选数据</el-button>
     <el-button type="primary" @click="selectAllRow">全选</el-button>
     <el-button type="primary" @click="cancelAll">取消全选</el-button>
     <el-button type="primary" @click="selectRow">选中第3行</el-button>
-    <com-table
-      class="mt-3"
-      :table-data="tableData"
-      :columns="columns"
-      ref="tableRef"
-      :tool-button="false"
-      @row-click="handleRowClick"
-    >
-      <template #operate>
-        <el-button type="primary">添加</el-button>
-      </template>
-      <template #title1Header>
-        <el-button type="primary">标题1</el-button>
-      </template>
-    </com-table>
+    <div style="height: 500px">
+      <com-table
+        class="mt-3"
+        :table-data="tableData"
+        :table-columns="columns"
+        ref="tableRef"
+        @row-click="handleRowClick"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="tsx">
 import { ref } from "vue";
-import ComTable from "@/components/ComTable/index.vue";
-import SearchForm from "@/components/SearchForm/index.vue";
-import { SearchProps } from "@/components/SearchForm/interface";
+// import ComTable from "@/components/ComTable/index.vue";
+import ComTable from "@/components/CommonTable/ComTable.vue";
+
 import { ElMessage } from "element-plus";
-import { ColumnProps } from "@/components/ComTable/interface";
+// import { ColumnProps } from "@/components/ComTable/interface";
+import { IColumnProps } from "@/components/CommonTable/interface";
 const activeName = ref("first");
 const handleClick = () => {};
 
 const handleRowClick = (row: any) => {
   ElMessage.success(`点击了第${row.id}行`);
-};
-const searchParam = ref({});
-const searchColumns: SearchProps[] = [
-  { el: "input", label: "用户姓名", key: "username", prop: "username" },
-  { el: "input", label: "身份证", key: "idCard", prop: "username" },
-  { el: "input", label: "职业", key: "job", prop: "username" },
-  {
-    el: "commonSelect",
-    label: "订单状态",
-    key: "orderStatus",
-    selectType: "PAY_STATUS"
-  },
-  {
-    label: "性别",
-    key: "gender",
-    el: "select",
-    fieldNames: { label: "label", value: "value" },
-    optionList: [
-      { label: "男", value: 1 },
-      { label: "女", value: 2 }
-    ]
-  },
-  {
-    label: "年龄",
-    render: ({ searchParam }) => {
-      return (
-        <div class="flex justify-center items-center">
-          <el-input vModel_trim={searchParam.minAge} placeholder="最小年龄" />
-          <span class="mr10 ml10">-</span>
-          <el-input vModel_trim={searchParam.maxAge} placeholder="最大年龄" />
-        </div>
-      );
-    }
-  },
-  {
-    label: "树结构",
-    el: "tree-select",
-    key: "treeId",
-    optionList: [
-      {
-        label: "一级 1",
-        value: 1,
-        children: [
-          {
-            label: "二级 1-1",
-            value: 2,
-            children: [
-              {
-                label: "三级 1-1-1",
-                value: 3
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    props: { filterable: true }
-  },
-  {
-    el: "date-picker",
-    label: "订单日期",
-    key: "orderDate",
-    props: { type: "daterange", valueFormat: "YYYY-MM-DD" },
-    defaultValue: ["2022-11-12", "2022-12-12"]
-  }
-];
-
-const search = (params: any) => {
-  console.log(params);
-};
-const reset = (params: any) => {
-  console.log(params);
 };
 
 const tableRef = ref();
@@ -188,41 +102,29 @@ const tableData = [
     title3: "反倒是离开就"
   }
 ];
-const columns: ColumnProps[] = [
+const columns: IColumnProps[] = [
   { type: "selection", fixed: "left", width: 70 },
   { type: "index", label: "序号", width: 80 },
-  { prop: "title1", label: "标题1", width: "280", isShow: true },
-  { prop: "title2", label: "标题2", width: "280", isShow: true },
-  { prop: "title3", label: "标题3", width: "280", isShow: true },
-  { prop: "title4", label: "标题4", width: "280", isShow: true },
-  { prop: "title5", label: "标题5", width: "180", isShow: true },
+  { prop: "title1", label: "标题1", width: "280" },
+  { prop: "title2", label: "标题2", width: "280" },
+  { prop: "title3", label: "标题3", width: "280" },
+  { prop: "title4", label: "标题4", width: "280" },
+  { prop: "title5", label: "标题5", width: "180" },
   {
     prop: "username",
     label: "用户姓名",
-    isShow: true,
-    render: scope => {
-      return (
-        <el-button
-          type="primary"
-          link
-          onClick={() => ElMessage.success("我是通过 tsx 语法渲染的内容")}
-        >
-          {scope.row.username}
-        </el-button>
-      );
-    }
+    width: 120
   },
   {
     prop: "age",
     label: "年龄",
     width: "120px",
-    isShow: true
+    fixed: "right"
   },
   {
-    prop: "operate",
+    prop: "operation",
     label: "操作",
     fixed: "right",
-    isShow: true,
     width: 180
   }
 ];

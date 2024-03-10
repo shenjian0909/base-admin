@@ -11,7 +11,7 @@
     "name": "system",
     "children": [
       {
-        "id": 13,
+        "id": "1-1",
         "menuType": "2",
         "title": "菜单管理",
         "name": "menu",
@@ -23,7 +23,7 @@
         "showLink": "True"
       },
       {
-        "id": 11,
+        "id": "1-2",
         "menuType": "2",
         "title": "用户管理",
         "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
@@ -35,7 +35,7 @@
         "showLink": "True"
       },
       {
-        "id": 12,
+        "id": "1-3",
         "menuType": "2",
         "title": "角色管理",
         "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
@@ -44,6 +44,79 @@
         "name": "role",
         "path": "/system/role",
         "component": "system/role/index",
+        "showLink": "True"
+      }
+    ]
+  },
+  {
+    "id": "121856222",
+    "menuType": "1",
+    "title": "示例",
+    "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+    "rank": 2,
+    "isUrl": "False",
+    "path": "/demo",
+    "showLink": "True",
+    "name": "demo",
+    "children": [
+      {
+        "id": "2-1",
+        "menuType": "2",
+        "title": "弹窗示例",
+        "name": "dialog",
+        "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+        "rank": 3,
+        "isUrl": "False",
+        "path": "/demo/dialog",
+        "component": "demo/dialog",
+        "showLink": "True"
+      },
+      {
+        "id": "2-2",
+        "menuType": "2",
+        "title": "图标示例",
+        "name": "icon",
+        "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+        "rank": 3,
+        "isUrl": "False",
+        "path": "/demo/icon",
+        "component": "demo/icon",
+        "showLink": "True"
+      },
+      {
+        "id": "2-3",
+        "menuType": "2",
+        "title": "主题示例",
+        "name": "theme",
+        "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+        "rank": 3,
+        "isUrl": "False",
+        "path": "/demo/theme",
+        "component": "demo/theme",
+        "showLink": "True"
+      },
+      {
+        "id": "2-4",
+        "menuType": "2",
+        "title": "表格示例",
+        "name": "table",
+        "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+        "rank": 3,
+        "isUrl": "False",
+        "path": "/demo/table",
+        "component": "demo/table",
+        "showLink": "True"
+      },
+      {
+        "id": "2-5",
+        "menuType": "2",
+        "title": "搜索条件",
+        "name": "search",
+        "icon": "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+        "rank": 3,
+        "isUrl": "False",
+        "path": "/demo/search",
+        "component": "demo/search",
         "showLink": "True"
       }
     ]

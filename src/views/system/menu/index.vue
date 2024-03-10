@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Delete, EditPen, Plus } from "@element-plus/icons-vue";
+import AddDialog from "./components/addDialog.vue";
 const searchParam = ref({});
 const searchCols = ref([
   { el: "input", label: "菜单名称", key: "keyword" },
@@ -33,13 +34,13 @@ const columns = ref([
   {
     label: "菜单路径",
     prop: "path",
-    minWidth: 150,
+    minWidth: 450,
     isShow: true
   },
   {
     label: "组件路径",
     prop: "component",
-    minWidth: 150,
+    minWidth: 350,
     isShow: true
   },
   {
@@ -84,7 +85,27 @@ const tableData = [
         path: "/system",
         component: "system/menu/index",
         showLink: "True",
-        hideMenu: "False"
+        hideMenu: "False",
+        children: [
+          {
+            id: 111,
+            menuType: "3",
+            menuName: "新增",
+            role: "system/add"
+          },
+          {
+            id: 112,
+            menuType: "3",
+            menuName: "编辑",
+            role: "system/edit"
+          },
+          {
+            id: 113,
+            menuType: "3",
+            menuName: "删除",
+            role: "system/delete"
+          }
+        ]
       },
       {
         id: 12,
@@ -137,12 +158,36 @@ const tableData = [
         hideMenu: "False"
       }
     ]
+  },
+  {
+    id: "3",
+    menuType: "2",
+    menuName: "com官网",
+    icon: "https://i.imgtg.com/2023/01/16/QRqMK.jpg",
+    rank: 3,
+    isUrl: "False",
+    path: "/index",
+    component: "home/index",
+    showLink: "False",
+    hideMenu: "False"
   }
 ];
+
+// 新增
+const addRef = ref();
+function add() {
+  console.log("新增");
+  addRef.value.open();
+}
 
 // 搜索
 function search() {
   console.log(searchParam.value);
+}
+
+// 刷新
+function refresh() {
+  console.log("刷新");
 }
 
 // 重置
@@ -164,10 +209,12 @@ function reset() {
       :border="true"
       :tableData="tableData"
       :isPageable="false"
+      :toolButton="true"
+      @refresh-table="refresh"
       class="flex-1"
     >
       <template #tableHeader>
-        <el-button type="primary">新增</el-button>
+        <el-button type="primary" @click="add">新增</el-button>
       </template>
       <template #showLink="{ row }">
         <el-tag v-if="row.showLink === 'True'">正常</el-tag>
@@ -185,6 +232,7 @@ function reset() {
         >
       </template>
     </com-table>
+    <add-dialog ref="addRef" />
   </div>
 </template>
 
